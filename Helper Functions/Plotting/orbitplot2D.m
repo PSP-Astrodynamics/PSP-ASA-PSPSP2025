@@ -9,9 +9,10 @@ arguments
     Name % name of orbit
     options.r_scale = 1
     options.LineStyle = "-"
+    options.origin = [0; 0]
 end
 
-xy = kepler2D_to_cartestian(a, e, thetastar, w);
+xy = kepler2D_to_cartestian(a, e, thetastar, w) + options.origin;
 plot(xy(1, :) / options.r_scale, xy(2, :) / options.r_scale, DisplayName = Name, LineStyle = options.LineStyle); hold on
 
 end
