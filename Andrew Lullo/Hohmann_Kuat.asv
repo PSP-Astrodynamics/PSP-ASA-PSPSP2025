@@ -1,0 +1,49 @@
+% Constants
+mu_Sun = 132712440017.99; % [km3 / s2] Sun gravitational parameter
+
+AU = 149597870.69;
+
+a_Vulcan = 2.1 * AU;
+mu_Vulcan = 2.8307e7;
+
+a_Kuat = 0.6 * AU;
+mu_Kuat = 1.2748e6;
+
+% Add helper function folder to path (for plotting)
+addpath('Helper Functions') 
+
+%% 
+
+v_orb_Vlc = sqrt(mu_Sun / a_Vulcan);
+v_orb_Kut = sqrt(mu_Sun / a_Kuat);
+
+a_trans = a_Vulcan + a_Kuat;
+e_trans = -((a_Vulcan / a_trans) - 1);
+P_trans = 2 * pi * sqrt(a_trans^3 / mu_Sun)
+
+v_trans1 = sqrt((2 / a_Vulcan) - (1 / a_trans));
+v_trans2 = sqrt((2 / a_Kuat) - (1 / a_trans));
+
+dV1 = v_trans1 - v_orb_Vlc
+dV2 = v_orb_Kut - v_trans2
+
+%%
+
+% Plot
+thetastar_trans = linspace(0, deg2rad(180), 100);
+w_trans = deg2rad(90);
+
+
+orbitplot2D(a_trans, e_trans, 0 , )
+
+% ae_sc = [a_Kuat, a_Vulcan, a_trans; 
+%          0, e_trans, 0];
+% objects_1a = struct();
+% objects_1a.a = a_trans;
+% objects_1a.e = 0;
+% objects_1a.w = deg2rad(90);
+% objects_1a.c = "b";
+% objects_1a.t_max = -1;
+% objects_1a.name = "Spacecraft";
+% delta_v_1a = [dV1, dV2];
+% plot_Hohmann_transfer(0, ae_sc, ["Kuat", "Transfer", "Vulcan"], [0, P_trans / 2, 0], delta_v_1a, objects_1a, mu_Sun, 200, "Launch to Geostationary Orbit", AU, "Astronomical Units")
