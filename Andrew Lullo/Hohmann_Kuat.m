@@ -13,7 +13,7 @@ kuat_day = 60 * 60 * 20;
 hgeo_kuat = ((mu_kuat * (kuat_day)^2) / (4 * pi^2))^(1/3);
 
 % Add helper function folder to path (for plotting)
-addpath("Helper Functions") 
+addpath("..\Helper Functions\Plotting") 
 
 %% 
 
