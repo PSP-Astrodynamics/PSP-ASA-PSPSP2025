@@ -10,10 +10,15 @@ arguments
     options.r_scale = 1
     options.LineStyle = "-"
     options.origin = [0; 0]
+    options.color = ""
 end
 
 xy = kepler2D_to_cartestian(a, e, thetastar, w) + options.origin;
-plot(xy(1, :) / options.r_scale, xy(2, :) / options.r_scale, DisplayName = Name, LineStyle = options.LineStyle); hold on
+if options.color == ""
+    plot(xy(1, :) / options.r_scale, xy(2, :) / options.r_scale, DisplayName = Name, LineStyle = options.LineStyle); hold on
+else
+    plot(xy(1, :) / options.r_scale, xy(2, :) / options.r_scale, DisplayName = Name, LineStyle = options.LineStyle, Color = options.color); hold on
+end
 
 end
 
