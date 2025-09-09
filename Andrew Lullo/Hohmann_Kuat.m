@@ -20,8 +20,8 @@ addpath("..\Helper Functions\Plotting")
 v_orb_Vlc = sqrt(mu_Sun / a_vulcan);
 v_orb_Kut = sqrt(mu_Sun / a_kuat);
 
-a_trans1 = (a_vulcan + a_kuat + hgeo_kuat) / 2;
-e_trans1 = -((a_vulcan / a_trans1) - 1)
+a_trans1 = (a_vulcan + a_kuat) / 2;
+e_trans1 = ((a_vulcan / a_trans1) - 1)
 P_trans1 = 2 * pi * sqrt(a_trans1^3 / mu_Sun)
 
 v_trans1 = sqrt((2 / a_vulcan) - (1 / a_trans1));
@@ -29,6 +29,10 @@ v_trans2 = sqrt((2 / a_kuat) - (1 / a_trans1));
 
 dV1 = v_trans1 - v_orb_Vlc
 dV2 = v_orb_Kut - v_trans2
+
+gamma_vulcan_dep = 0 % Hohmann
+v_inf_vulcan_dep = dV1
+
 
 %%
 
