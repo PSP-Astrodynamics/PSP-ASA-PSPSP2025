@@ -64,10 +64,10 @@ w_msoi = deg2rad(90);
 e_trans2 = .85
 a_trans2 = hgeo_kuat / (1 - e_trans2)
 thetastar_trans2 = linspace(0, deg2rad(360), 200);
-w_trans2 = deg2rad(46);
+w_trans2 = deg2rad(43);
 
 % Kuat Out
-thetastar_trans3 = linspace(deg2rad(-77), deg2rad(77), 200);
+thetastar_trans3 = linspace(deg2rad(-79), deg2rad(79), 200);
 w_trans3 = deg2rad(270);
 
 % Given Tatooine Variables
@@ -79,6 +79,12 @@ v_inf_plus_kuat = 12.6285;
 % ********************
 a_hyp_kuat = -mu_kuat / v_inf_plus_kuat^2
 v_plus_moon = sqrt(mu_kuat * (2 / a_moon - 1 / a_hyp_kuat))
+
+v_orb_kuati = sqrt(mu_kuat / hgeo_kuat);
+vp_kuat = sqrt(mu_kuat * (2 / hgeo_kuat - 1 / a_hyp_kuat));
+dv_direct = vp_kuat - v_orb_kuati
+vp_trans2 = sqrt(mu_kuat * (2 / hgeo_kuat - 1 / a_trans2));
+dv_trans2 = vp_trans2 - v_orb_kuati
 
 gamma_plus_moon = 39.554; % Gotten from Travis' analysis
 v_moon = sqrt(mu_kuat / a_moon);
@@ -122,20 +128,33 @@ e_exit = sqrt(-(p_exit / a_hyp_kuat - 1));
 % Plots
 % **********
 
-% Plot Kuat
-orbitplot2D(r_kaut, e_kuat_planet, thetastar_kuat_planet, w_kuat_planet, "Kuat", r_scale = AU); hold on
-% Plot Kuatistationary
-orbitplot2D(hgeo_kuat, e_kuat_geo, thetastar_kuat_geo, w_kuat_geo, "Kuatistationary", r_scale = AU);
 % Plot Bador
-orbitplot2D(a_moon, e_moon, thetastar_moon, w_moon, "Moon", r_scale = AU);
+orbitplot2D(a_moon, e_moon, thetastar_moon, w_moon, "Bador Orbit", r_scale = AU);
 % Plot Kuat Sphere of Influence
-orbitplot2D(r_soi, e_ksoi, thetastar_ksoi, w_ksoi, "Kuat Sphere of Influence", r_scale = AU);
+orbitplot2D(r_soi, e_ksoi, thetastar_ksoi, w_ksoi, "Kuat Sphere of Influence", r_scale = AU, LineStyle='-.');
+% Plot Kuat
+orbitplot2D(r_kaut, e_kuat_planet, thetastar_kuat_planet, w_kuat_planet, "Kuat Planet", r_scale = AU, color='r'); hold on
+% Plot Kuatistationary
+orbitplot2D(hgeo_kuat, e_kuat_geo, thetastar_kuat_geo, w_kuat_geo, "Kuatistationary Orbit", r_scale = AU);
 % Plot Bador Sphere of Influence
-orbitplot2D(r_msoi, e_msoi, thetastar_msoi, w_msoi, "Bador Sphere of Influence", r_scale = AU, origin = [-100000; -a_moon + 10000]);
+orbitplot2D(r_msoi, e_msoi, thetastar_msoi, w_msoi, "Bador Sphere of Influence", r_scale = AU, origin = [-100000; -a_moon + 10000], LineStyle='-.');
 % Plot transfer to Bador
-orbitplot2D(a_trans2, e_trans2, thetastar_trans2, w_trans2, "Transfer to Bador", r_scale = AU, LineStyle = "-.");
+orbitplot2D(a_trans2, e_trans2, thetastar_trans2, w_trans2, "Transfer to Bador", r_scale = AU, LineStyle = "--");
 % Plot transfer Out
-orbitplot2D(a_hyp_kuat, e_exit, thetastar_trans3, w_trans3, "Exit Orbit", r_scale = AU, LineStyle = "-.");
+orbitplot2D(a_hyp_kuat, e_exit, thetastar_trans3, w_trans3, "Exit Orbit", r_scale = AU, LineStyle = "--");
+
+% **********
+% Trajectory
+% **********
+
+thetastar_trans2 = linspace(0, deg2rad(-thetastar_intersect), 200);
+thetastar_trans3 = linspace(deg2rad(-16.8), deg2rad(-79), 100);
+
+% Plot transfer to Bador
+orbitplot2D(a_trans2, e_trans2, thetastar_trans2, w_trans2, "Spacecraft Initial Trajectory", r_scale = AU, LineStyle = "-", color='y');
+% Plot transfer Out
+orbitplot2D(a_hyp_kuat, e_exit, thetastar_trans3, w_trans3, "Spacecraft Final Trajectory", r_scale = AU, LineStyle = "-", color='y');
+
 hold off
 grid on
 axis equal

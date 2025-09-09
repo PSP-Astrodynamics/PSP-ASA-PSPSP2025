@@ -15,11 +15,11 @@ thetastar_msoi = linspace(0, deg2rad(360), 200);
 w_msoi = deg2rad(90);
 
 % Initial Hyp Plot
-thetastar_init_hyp = linspace(deg2rad(0), deg2rad(150.845), 100);
+thetastar_init_hyp = linspace(deg2rad(0), deg2rad(150), 100);
 w_init_hyp = deg2rad(90);
 
 % Final Hyp Plot
-thetastar_final_hyp = linspace(deg2rad(0), deg2rad(-99.156), 100);
+thetastar_final_hyp = linspace(deg2rad(0), deg2rad(-9), 100);
 w_final_hyp = deg2rad(90);
 
 % ********************
@@ -38,9 +38,9 @@ orbitplot2D(r_bador, e_bador, thetastar_bador, w_bador, "Bador", r_scale = AU); 
 % Plot Bador Sphere of Influence
 orbitplot2D(r_msoi, e_msoi, thetastar_msoi, w_msoi, "Bador Sphere of Influence", r_scale = AU);
 % Plot Initial Hyperbola
-orbitplot2D(a_minus, e_minus, thetastar_init_hyp, w_init_hyp, "Initial Trajectory", r_scale = AU, LineStyle='-.');
+orbitplot2D(a_minus, e_minus, thetastar_init_hyp, w_init_hyp, "Initial Trajectory", r_scale = AU);
 % Plot Final Hyperbola
-orbitplot2D(a_plus, e_plus, thetastar_final_hyp, w_final_hyp, "Final Trajectory", r_scale = AU, LineStyle='-.');
+orbitplot2D(a_plus, e_plus, thetastar_final_hyp, w_final_hyp, "Final Trajectory", r_scale = AU);
 hold off
 grid on
 axis equal

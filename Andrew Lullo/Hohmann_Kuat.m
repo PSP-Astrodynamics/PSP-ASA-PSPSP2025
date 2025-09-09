@@ -48,11 +48,11 @@ w_vulcan = deg2rad(90);
 
 
 % Plot Kuat
-orbitplot2D(a_kuat, e_kuat, thetastar_kuat, w_kuat, "Kuat", r_scale = AU); hold on
+orbitplot2D(a_kuat, e_kuat, thetastar_kuat, w_kuat, "Kuat Orbit", r_scale = AU, LineStyle = "-"); hold on
 % Plot Vulcan
-orbitplot2D(a_vulcan, e_vulcan, thetastar_vulcan, w_vulcan, "Vulcan", r_scale = AU, LineStyle = "-")
+orbitplot2D(a_vulcan, e_vulcan, thetastar_vulcan, w_vulcan, "Vulcan Orbit", r_scale = AU, LineStyle = "-")
 % Plot transfer
-orbitplot2D(a_trans1, e_trans1, thetastar_trans1, w_trans1, "Transfer", r_scale = AU, LineStyle = "-.")
+orbitplot2D(a_trans1, e_trans1, thetastar_trans1, w_trans1, "Hohmann Transfer", r_scale = AU, LineStyle = "-.")
 hold off
 grid on
 axis equal
