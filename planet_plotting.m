@@ -16,12 +16,19 @@ scale_vulcan = scale_factor * log(mu_vulcan);
 scale_endor = scale_factor * log(mu_endor);
 scale_tatooine = scale_factor * log(mu_tatooine);
 scale_sun = scale_factor * log(mu_sun);
+w_vulcan = deg2rad(100)'
+% Plot transfers
+orbitplot2D(a_hyp, e_hyp, -deg2rad(100):0.001:-0.66, w_vulcan + pi + pi*1.2, "", r_scale = AU, color = "m")
+orbitplot2D(a_trans1, e_trans1, -thetastar_trans1, w_trans1 + pi, "", r_scale = AU, LineStyle = "-", color = "m")
+orbitplot2D(a_trans, e_trans, 0:0.001:TA_KT, w_trans1 + pi, "", r_scale = AU, LineStyle="-", color = "m")
+orbitplot2D(a * AU, e_ti, -2:0.001:0, w_trans1 + pi-1.3, "", r_scale = AU, LineStyle="-", color = "m")
 
-plot_conic(a_kuat, 0, deg2rad(320), 100, "Kuat", scale_kuat, "b"); hold on
-plot_conic(a_vulcan, 0, deg2rad(100), 100, "Vulcan", scale_vulcan, "g")
-plot_conic(a_endor, 0, deg2rad(30), 100, "Endor", scale_endor, "r")
-plot_conic(a_tatooine, 0, deg2rad(190), 100, "Tatooine", scale_tatooine, "#FFA500", scatter_color = [])
+plot_conic(a_kuat, 0, w_vulcan + pi, 100, "Kuat", scale_kuat, "b"); hold on
+plot_conic(a_vulcan, 0, w_vulcan, 100, "Vulcan", scale_vulcan, "g")
+plot_conic(a_endor, 0, w_Endor, 100, "Endor", scale_endor, "r")
+plot_conic(a_tatooine, 0, w_tat - 0.18, 100, "Tatooine", scale_tatooine, "#FFA500", scatter_color = [])
 plot_conic(0, 0, 0, 100, "Sol", scale_sun, "y")
+
 hold off
 axis equal
 grid on

@@ -33,6 +33,9 @@ dV2 = v_orb_Kut - v_trans2
 gamma_vulcan_dep = 0 % Hohmann
 v_inf_vulcan_dep = dV1
 
+v_inf_kuat_arr = dV2
+gamma_kuat_arr = 0
+
 
 %%
 
